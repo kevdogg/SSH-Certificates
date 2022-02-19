@@ -104,19 +104,19 @@ This is going to produce a private/public keypair:
 &emsp;$HOME/.ssh/id_ed25519<br>
 &emsp;$HOME/.ssh/ed_ed25519.pub
 
-### **USER CERTIFICATES STEP #1 - Sign the client's public key##
+### **USER CERTIFICATES STEP #1 - Sign the client's public key**
 
 The user's public key is going to be signed via the following command:
 
     ssh-keygen -s CA -I <ID> -n <USERNAME> -V +52w KEYFILE.pub
 
-&emsp;-s - This is the SSH CA private key
-&emsp;-I - Short human readable description of certificate - no spaces (Optional)
-&emsp;-n - Username by which you will connect -- usually the user has to have an account on the remote server
-&emsp;-V - (Optional) time indicating when certificate will expire
-&emsp;KEYFILE.pub - User's public key usually id_ed25519.pub or id_rsa.pub. 
+&emsp;-s - This is the SSH CA private key<br>
+&emsp;-I - Short human readable description of certificate - no spaces (Optional)<br>
+&emsp;-n - Username by which you will connect -- usually the user has to have an account on the remote server<br>
+&emsp;-V - (Optional) time indicating when certificate will expire<br>
+&emsp;KEYFILE.pub - User's public key usually id_ed25519.pub or id_rsa.pub<br>
 
- The SSH User Certificate needs to be stored on the client -- usually within ~/.ssh.  The name of this file will be ***KEYFILE-cert.pub*** where KEYFILE is for example id_ed25519/id_rsa/id_dsa/id_ecdsa.
+ The SSH User Certificate needs to be stored on the client -- usually within ~/.ssh.  The name of this file will be ***KEYFILE-cert.pub*** where KEYFILE will be:  id_ed25519/id_rsa/id_dsa/id_ecdsa.
 
   A specific example of using this command is given below:
 
@@ -126,11 +126,11 @@ The SSH User Certificate can be validated via:
 
     ssh-keygen -LF <Certifiate File>
 
-&emsp;- <Certificate File> - Will usually be id_ed25519-cert.pub
+&emsp;-\<Certificate File\> - Will usually be id_ed25519-cert.pub
 
 ### **USER CERTIFICATES STEP #2 - Install the CA's public key on the server**
 
-Copy the SSH Certificate Authority's ***CA.pub*** key on the SSH Host/Server -> /etc/ssh/CA.pub on each client. 
+&emsp;Copy the Server's SSH Certificate Authority's ***CA.pub*** key  ->to the Client's /etc/ssh/CA.pub
 
 ### **USER CERTIFICATES STEP #3 - Tell sshd where to find the CA's public key**
 
@@ -152,4 +152,7 @@ The log should spit out something similar to the following:
 
 ## **References**
 &emsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39
+&emsp;[2]: /etc/ssh/sshd-config additions: 
+    HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub
+    TrustedUserCAKeys /etc/ssh/CA.pub
 

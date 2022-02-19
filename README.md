@@ -63,13 +63,13 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
 
     ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub
 
-### **HOST CERTIFICATES STEP #2 - Configure sshd**
+### **HOST CERTIFICATES STEP #2 - Configure sshd on Server**
 
 Add the following within /etc/ssh/sshd_config
 
     HostCertificate /etc/ssh/KEYFILE-cert.pub
 
-  **KEYFILE** will be: ssh_host_ed25519_key, ssh_host_rsa_key, ssh_host_ecdsa_key, ssh_host_dsa_key
+  **KEYFILE** will be: ssh_host_ed25519_key, ssh_host_rsa_key, ssh_host_ecdsa_key, ssh_host_dsa_key.  
   I believe you can repeat the HostCertificate line multiple times in the config files to specficy Multiple Host Certificates of different types (dsa,rsa,ecdsa,ed25519).  The HostCertificate should always have a corresponding HostKey entry within the /etc/ssh/sshd_config file
 
 ### **HOST CERTIFICATES STEP #3 - Tell Clients to trust the Trusted Server**
@@ -80,13 +80,14 @@ Each client will have a /etc/.ssh/known_hosts file and global /etc/ssh/ssh_known
 
 Instead of Host Keys, include the CA.pub in the known_hosts on each Client. So for example:
 
-    @cert_authority LIST-OF-SERVERS <CA.pub>
+  @cert_authority LIST-OF-SERVERS <CA.pub>
 
-    LIST-OF-SERVERS - comma-separate list of Servers that signed their host key. Wildcards can be permitted. Below is an example:
+  - LIST-OF-SERVERS - comma-separate list of Servers that signed their host key. Wildcards can be permitted. Below is an example:
+
+  - CA.pub - This is the CA.pub key appended as shown above.  
 
     @cert-authority archbw,*.gohilton.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T gohilton.com-SSH-CA
 
-  CA.pub - This is the CA.pub key appended as shown above.  
 
 USER CERTIFICATES
 

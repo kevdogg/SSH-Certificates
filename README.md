@@ -203,6 +203,6 @@ id_ed25519-cert.pub:
 &nbsp;&nbsp;&nbsp;&nbsp;[6]: Example Server's ${HOME}/.ssh/authorized_keys file<br>
 ```bash
 % cat ${HOME}/.ssh/authorized_keys
-```<br>
+```
 &nbsp;&nbsp;&nbsp;&nbsp;**NOTE FILE IS EMPTY -- All VALIDATION IS DONE THROUGH SSH DAEMON AND NOT AT THE USER LEVEL**
 

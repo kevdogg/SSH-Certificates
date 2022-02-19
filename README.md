@@ -23,9 +23,9 @@ The CA private/public keypair was generated via the following command:
    - ssh-keygen -a 100 -t ed25519 -f CA -C gohilton.com-SSH-CA
 
 
-HOST CERTIFICATES 
+## **HOST CERTIFICATES**
 
-#HOST CERTIFICATES BACKGROUND
+### **HOST CERTIFICATES BACKGROUND**
 
 SSH SERVER (on any Host machine)
 
@@ -39,7 +39,7 @@ Typically keys that are generated are the following:
 
 Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access the server (or host) the corresponding Host Public Key needs to be signed by the SSH CA Private Key.  If only only ed25519 keys, only the ssh_host_ed25519_key.pub needs to be signed.  If using older methods like rsa, then the ssh_host_rsa_key.pub also needs to be signed by the SSH CA Private Key.
 
-#HOST CERTIFICATES STEP #1 - Sign host public keys and create host certificates
+1. **HOST CERTIFICATES STEP #1 - Sign host public keys and create host certificates**
 
 Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH certifcates are created using the following command:
 

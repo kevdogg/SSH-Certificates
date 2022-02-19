@@ -151,8 +151,8 @@ The log should spit out something similar to the following:
     Accepted publickey for kevdog from 10.0.1.185 port 63746 ssh2: ED25519-CERT SHA256:qC/ckN+0cZ0h/rqtL59pfSXsgQ6JZfDCzl93tWVDKbg ID kevdog@kevdog-MBP-2022-SSH-Client-Certificate (serial 0) CA ED25519 SHA256:bSSV3CEqcBTff1GGQtxvcnrM+LOzDYB+79i1CRMJQx8
 
 ## **References**
-&emsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39
-&emsp;[2]: /etc/ssh/sshd-config additions: 
+&emsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39<br>
+&emsp;[2]: /etc/ssh/sshd-config additions:  
     HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub
     TrustedUserCAKeys /etc/ssh/CA.pub
 

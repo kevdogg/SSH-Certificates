@@ -46,11 +46,11 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
 
 <div style="padding-left: 10%">
 &emsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH CA key file<BR />
-  -I  ID - short, human-readable description of the certificate (Optional)<BR />
-  -V +52w - This (optional) flag gives an expiration date of the Host's SSH Certificate.  52w is used as an example<BR />
-  -z - Serial Number<BR />
-  -n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.gohilton.com,<BR />
+&emsp;-s - This is the private SSH CA key file<BR />
+&emsp;-I  ID - short, human-readable description of the certificate (Optional)<BR />
+&emsp;-V +52w - This (optional) flag gives an expiration date of the Host's SSH Certificate.  52w is used as an example<BR />
+&emsp;-z - Serial Number<BR />
+&emsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.gohilton.com,<BR />
 </div>  
   
  hello 

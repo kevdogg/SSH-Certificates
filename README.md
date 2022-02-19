@@ -52,12 +52,12 @@ Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH certifcates are created using the following command:
 
-    ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V <Validity Time> -z <SERIAL_NUMBER> KEYFILE.pub
+    ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V <Validity_Time> -z <SERIAL_NUMBER> KEYFILE.pub
 
 &nbsp;&nbsp;&nbsp;&nbsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH Certificate Authority's CA key file<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;-V Validity Time - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-V <Validity_Time> - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-z - Serial Number<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.domain.com<br>
 <br>
@@ -138,7 +138,7 @@ The SSH User Certificate can be validated via:
 
 ### **USER CERTIFICATES STEP #2 - Install/Copy the SSH Certificate Authority's CA public key on the server**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Copy the Server's SSH Certificate Authority's ***CA.pub*** key  ->to the Server's /etc/ssh/CA.pub
+&nbsp;&nbsp;&nbsp;&nbsp;Copy the Server's SSH Certificate Authority's ***CA.pub*** key  -> to the Server's /etc/ssh/CA.pub
 
 ### **USER CERTIFICATES STEP #3 - Tell the Server's SSH Daemon (sshd) where to find the CA's public key**
 
@@ -148,7 +148,7 @@ The SSH User Certificate can be validated via:
 
 ### **USER CERTIFICATES #4 - Modify authorized_keys file to remove the client's public key (OPTIONAL)**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Remove any entry within the ~/.ssh/authorized_keys file on the Server.  This wwill force the server to accept client SSH certificates that are signed via the SSH CA. If you want to keep continuing to use traditional ssh client public/private keypair authentication, You don't necessarily need to remove reference to the client's public key. 
+&nbsp;&nbsp;&nbsp;&nbsp;Remove any entry within the ~/.ssh/authorized_keys file on the Server.  This wwill force the server to accept client SSH certificates that are signed via the SSH CA. If you want to keep continuing to use traditional ssh client public/private keypair authentication, you don't necessarily need to remove reference to the client's public key. 
 
 When testing the connection via the client to server, you can view the server logs via:
 

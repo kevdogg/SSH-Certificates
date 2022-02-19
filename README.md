@@ -54,16 +54,14 @@ Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access 
 
     ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V <Validity Time> -z <SERIAL_NUMBER> KEYFILE.pub
 
-<div style="padding-left: 10%">
-&nbsp;&nbsp;&nbsp;&nbsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH Certificate Authority's CA key file<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-V \<Validity Time\> - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-z - Serial Number<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.domain.com,<BR />
-</div>  
+&nbsp;&nbsp;&nbsp;&nbsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH Certificate Authority's CA key file<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<br>>
+&nbsp;&nbsp;&nbsp;&nbsp;-V Validity Time - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-z - Serial Number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.domain.com<br>
 <br>
-  Running the above command will result in a file known as __KEYFILE-cert.pub__.  This command needs to be run for each type of server host key that needs to be signed (ed25519,ecdsa,rsa,dsa).
+  Running the above command will result in a file known as **KEYFILE**-**cert.pub**.  This command needs to be run for each type of server host key that needs to be signed (ed25519,ecdsa,rsa,dsa).
 
   I will usually run the following command within the /etc/ssh directory for only the ssh_host_ed25519_key.pub file:
 

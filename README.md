@@ -150,11 +150,11 @@ The log should spit out something similar to the following:
 
 ## **References**
 &nbsp;&nbsp;&nbsp;&nbsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[2]: /etc/ssh/sshd-config additions:  
+&nbsp;&nbsp;&nbsp;&nbsp;[2]: Server SSH Daemon /etc/ssh/sshd-config additions:  
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrustedUserCAKeys /etc/ssh/CA.pub
-&nbsp;&nbsp;&nbsp;&nbsp;[3]: Example Validation of /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrustedUserCAKeys /etc/ssh/CA.pub<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[3]: Example Validation of Server's /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
 ```bash
 #ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub
 ssh_host_ed25519_key-cert.pub:
@@ -175,7 +175,7 @@ ssh_host_ed25519_key-cert.pub:
         Critical Options: (none)
         Extensions: (none)
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;[4]: Example Validation of ${HOME}/.ssh/id_ed25519_key-cert.pub<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[4]: Example Validation of Client's ${HOME}/.ssh/id_ed25519-cert.pub<br>
 ```bash
 #ssh-keygen -Lf ${HOME}/.ssh/id_ed25519-cert.pub
 id_ed25519-cert.pub:
@@ -195,3 +195,14 @@ id_ed25519-cert.pub:
                 permit-pty
                 permit-user-rc
 ```
+&nbsp;&nbsp;&nbsp;&nbsp;[5]: Example Client's ${HOME}/.ssh/known_hosts file<br>
+```bash
+% cat ${HOME}/.ssh/known_hosts
+@cert-authority archbw,archtm,arch-tm,arch-TM,*.gohilton.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T gohilton.com-SSH-CA
+```
+&nbsp;&nbsp;&nbsp;&nbsp;[6]: Example Server's ${HOME}/.ssh/authorized_keys file<br>
+```bash
+% cat ${HOME}/.ssh/authorized_keys
+```<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**NOTE FILE IS EMPTY -- All VALIDATION IS DONE THROUGH SSH DAEMON AND NOT AT THE USER LEVEL**
+

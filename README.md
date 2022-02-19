@@ -101,8 +101,8 @@ Each user is going to generate their individual ssh keypairs. This is going to b
 
 This is going to produce a private/public keypair:
   
-&emsp;~/.ssh/id_ed25519
-&emsp;~/.ssh/ed_ed25519.pub
+&emsp;$HOME/.ssh/id_ed25519<br>
+&emsp;$HOME/.ssh/ed_ed25519.pub
 
 ### **USER CERTIFICATES STEP #1 - Sign the client's public key##
 

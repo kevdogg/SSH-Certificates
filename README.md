@@ -45,7 +45,7 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
     ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V +52w -z <SERIAL_NUMBER> KEYFILE.pub
 
 <p>
-  -h - Indicates this is a Host Key to be signed (Client keys don't have this flag)
+  -h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
   -s - This is the private SSH CA key file
   -I  ID - short, human-readable description of the certificate (Optional)
   -V +52w - This (optional) flag gives an expiration date of the Host's SSH Certificate.  52w is used as an example

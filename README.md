@@ -28,13 +28,13 @@ The CA private/public keypair was generated via the following command:
 
 SSH SERVER (on any Host machine)
 
-SSH SERVER of (SSH Host) machines generate their on server keys located within /etc/ssh
-Typically keys that are generated are the following:
+SSH SERVER or SSH Hostmachines generate their on server keys located within /etc/ssh.
+Typically the keys that are generated are the following:
 
-  ssh_host_dsa_key / ssh_host_dsa_key.pub
-  ssh_host_ecdsa_key / ssh_host_ecdsa_key.pub
-  ssh_host_ed25519_key / ssh_host_ed25519_key.pub
-  ssh_host_rsa_key / ssh_host_rsa_key.pub
+  - ssh_host_dsa_key / ssh_host_dsa_key.pub
+  - ssh_host_ecdsa_key / ssh_host_ecdsa_key.pub
+  - ssh_host_ed25519_key / ssh_host_ed25519_key.pub
+  - ssh_host_rsa_key / ssh_host_rsa_key.pub
 
 Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access the server (or host) the corresponding Host Public Key needs to be signed by the SSH CA Private Key.  If only only ed25519 keys, only the ssh_host_ed25519_key.pub needs to be signed.  If using older methods like rsa, then the ssh_host_rsa_key.pub also needs to be signed by the SSH CA Private Key.
 
@@ -89,9 +89,9 @@ Instead of Host Keys, include the CA.pub in the known_hosts on each Client. So f
     @cert-authority archbw,*.gohilton.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T gohilton.com-SSH-CA
 
 
-USER CERTIFICATES
+## **USER/Client CERTIFICATES**
 
-#Background
+### **User/Client Certificates Background**
 
 Each user is going to generate their individual ssh keypairs. This is going to be done via the following:
 

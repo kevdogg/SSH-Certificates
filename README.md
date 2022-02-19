@@ -44,7 +44,7 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
 
     ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V +52w -z <SERIAL_NUMBER> KEYFILE.pub
 
-<div style="padding-left: 10px">
+<div style="padding-left: 30px">
   -h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
   -s - This is the private SSH CA key file<BR />
   -I  ID - short, human-readable description of the certificate (Optional)<BR />
@@ -53,6 +53,7 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
   -n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.gohilton.com,<BR />
 </div>
 
+  
   The result of the is command with store the output in a file known as **KEYFILE-cert.pub**
 
   I will usually run the following command within the /etc/ssh directory for only the ssh_host_ed25519_key.pub file:

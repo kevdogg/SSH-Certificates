@@ -151,9 +151,14 @@ The log should spit out something similar to the following:
 ## **References**
 &nbsp;&nbsp;&nbsp;&nbsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[2]: Server SSH Daemon /etc/ssh/sshd-config additions:  
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrustedUserCAKeys /etc/ssh/CA.pub<br>
+```bash
+...
+...
+HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub
+TrustedUserCAKeys /etc/ssh/CA.pub
+...
+...
+```
 &nbsp;&nbsp;&nbsp;&nbsp;[3]: Example Validation of Server's /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
 ```bash
 #ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub

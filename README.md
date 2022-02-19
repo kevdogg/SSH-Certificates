@@ -16,10 +16,10 @@ My directory structure is as follows:
 This directory contains the master or root CA public and private keys to be used for SSH Certificates.
 
 
-These keys represent the gohilton.com SSH Certificate Authority - or ROOT CA for SSH keys within the *.gohilton.com domain.
+These keys represent the domain.com SSH Certificate Authority - or ROOT CA for SSH keys within the *.domain.com domain.
 
 The CA private/public keypair was generated via the following command:
-   - ssh-keygen -a 100 -t ed25519 -f CA -C gohilton.com-SSH-CA
+   - ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA
 
 
 ## **HOST CERTIFICATES**
@@ -45,12 +45,12 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
     ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V +52w -z <SERIAL_NUMBER> KEYFILE.pub
 
 <div style="padding-left: 10%">
-&emsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
-&emsp;-s - This is the private SSH CA key file<BR />
-&emsp;-I  ID - short, human-readable description of the certificate (Optional)<BR />
-&emsp;-V +52w - This (optional) flag gives an expiration date of the Host's SSH Certificate.  52w is used as an example<BR />
-&emsp;-z - Serial Number<BR />
-&emsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.gohilton.com,<BR />
+&nbsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH CA key file<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;-V +52w - This (optional) flag gives an expiration date of the Host's SSH Certificate.  52w is used as an example<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;-z - Serial Number<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.domain.com,<BR />
 </div>  
 <BR /><BR />  
   The result of the is command with store the output in a file known as **KEYFILE-cert.pub**
@@ -84,11 +84,11 @@ Instead of Host Keys, include the CA.pub in the known_hosts on each Client. So f
 
     @cert_authority LIST-OF-SERVERS <CA.pub>
 
-&emsp;- LIST-OF-SERVERS - comma-separate list of Servers that signed their host key. Wildcards can be permitted.
+&nbsp;&nbsp;&nbsp;&nbsp;- LIST-OF-SERVERS - comma-separate list of Servers that signed their host key. Wildcards can be permitted.
 
-&emsp;- CA.pub - This is the SSH Certificate Authority's CA.pub key.
+&nbsp;&nbsp;&nbsp;&nbsp;- CA.pub - This is the SSH Certificate Authority's CA.pub key.
 
-    @cert-authority archbw,*.gohilton.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T gohilton.com-SSH-CA
+    @cert-authority archbw,*.domain.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T domain.com-SSH-CA
 
 
 ## **USER/Client CERTIFICATES**
@@ -101,8 +101,8 @@ Each user is going to generate their individual ssh keypairs. This is going to b
 
 This is going to produce a private/public keypair:
   
-&emsp;$HOME/.ssh/id_ed25519<br>
-&emsp;$HOME/.ssh/ed_ed25519.pub
+&nbsp;&nbsp;&nbsp;&nbsp;$HOME/.ssh/id_ed25519<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$HOME/.ssh/ed_ed25519.pub
 
 ### **USER CERTIFICATES STEP #1 - Sign the client's public key**
 
@@ -110,11 +110,11 @@ The user's public key is going to be signed via the following command:
 
     ssh-keygen -s CA -I <ID> -n <USERNAME> -V +52w KEYFILE.pub
 
-&emsp;-s - This is the SSH CA private key<br>
-&emsp;-I - Short human readable description of certificate - no spaces (Optional)<br>
-&emsp;-n - Username by which you will connect -- usually the user has to have an account on the remote server<br>
-&emsp;-V - (Optional) time indicating when certificate will expire<br>
-&emsp;KEYFILE.pub - User's public key usually id_ed25519.pub or id_rsa.pub<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-s - This is the SSH CA private key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-I - Short human readable description of certificate - no spaces (Optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-n - Username by which you will connect -- usually the user has to have an account on the remote server<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-V - (Optional) time indicating when certificate will expire<br>
+&nbsp;&nbsp;&nbsp;&nbsp;KEYFILE.pub - User's public key usually id_ed25519.pub or id_rsa.pub<br>
 
  The SSH User Certificate needs to be stored on the client -- usually within ~/.ssh.  The name of this file will be ***KEYFILE-cert.pub*** where KEYFILE will be:  id_ed25519/id_rsa/id_dsa/id_ecdsa.
 
@@ -126,21 +126,21 @@ The SSH User Certificate can be validated via:
 
     ssh-keygen -LF <Certifiate File>
 
-&emsp;-\<Certificate File\> - Will usually be id_ed25519-cert.pub
+&nbsp;&nbsp;&nbsp;&nbsp;- \<Certificate File\> - Will usually be id_ed25519-cert.pub
 
 ### **USER CERTIFICATES STEP #2 - Install the CA's public key on the server**
 
-&emsp;Copy the Server's SSH Certificate Authority's ***CA.pub*** key  ->to the Client's /etc/ssh/CA.pub
+&nbsp;&nbsp;&nbsp;&nbsp;Copy the Server's SSH Certificate Authority's ***CA.pub*** key  ->to the Client's /etc/ssh/CA.pub
 
-### **USER CERTIFICATES STEP #3 - Tell sshd where to find the CA's public key**
+### **USER CERTIFICATES STEP #3 - Tell the Server's SSH Daemon (sshd) where to find the CA's public key**
 
-On each SSH Host/Server, modify /etc/ssh/sshd_config to add the following:
+&nbsp;&nbsp;&nbsp;&nbsp;On each SSH Host/Server, modify /etc/ssh/sshd_config to add the following:
 
     TrustedUserCAKeys /etc/ssh/CA.pub
 
 ### **USER CERTIFICATES #4 - Modify authorized_keys file to remove the client's public key (OPTIONAL)**
 
-Remove any entry within the ~/.ssh/authorized_keys file on the Server.  You don't necessarily need to remove this file however you can remove any entry that references the client's public key. 
+&nbsp;&nbsp;&nbsp;&nbsp;Remove any entry within the ~/.ssh/authorized_keys file on the Server.  You don't necessarily need to remove this file however you can remove any entry that references the client's public key. 
 
 When testing the connection via the client to server, you can view the server logs via:
 
@@ -151,9 +151,9 @@ The log should spit out something similar to the following:
     Accepted publickey for kevdog from 10.0.1.185 port 63746 ssh2: ED25519-CERT SHA256:qC/ckN+0cZ0h/rqtL59pfSXsgQ6JZfDCzl93tWVDKbg ID kevdog@kevdog-MBP-2022-SSH-Client-Certificate (serial 0) CA ED25519 SHA256:bSSV3CEqcBTff1GGQtxvcnrM+LOzDYB+79i1CRMJQx8
 
 ## **References**
-&emsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39<br>
-&emsp;[2]: /etc/ssh/sshd-config additions:  
+&nbsp;&nbsp;&nbsp;&nbsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[2]: /etc/ssh/sshd-config additions:  
 <br>
-&emsp;&emsp;HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
-&emsp;&emsp;TrustedUserCAKeys /etc/ssh/CA.pub
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrustedUserCAKeys /etc/ssh/CA.pub
 

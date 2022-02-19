@@ -1,0 +1,8 @@
+# SSH gohilton.com CA private key for signing client and host keys
+CA
+
+# Ignore folders
+clients
+hosts
+
+

@@ -15,7 +15,6 @@ My directory structure is as follows:
 
 This directory contains the master or root CA public and private keys to be used for SSH Certificates.
 
-Explanation may best be found here: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39
 
 These keys represent the gohilton.com SSH Certificate Authority - or ROOT CA for SSH keys within the *.gohilton.com domain.
 
@@ -39,11 +38,11 @@ Typically keys that are generated are the following:
 
 Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access the server (or host) the corresponding Host Public Key needs to be signed by the SSH CA Private Key.  If only only ed25519 keys, only the ssh_host_ed25519_key.pub needs to be signed.  If using older methods like rsa, then the ssh_host_rsa_key.pub also needs to be signed by the SSH CA Private Key.
 
-1. **HOST CERTIFICATES STEP #1 - Sign host public keys and create host certificates**
+ ### **HOST CERTIFICATES STEP #1 - Sign host public keys and create host certificates**
 
 Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH certifcates are created using the following command:
 
-  ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V +52w -z <SERIAL_NUMBER> KEYFILE.pub
+    ssh-keygen -h -s CA -n LIST-OF-PRINCIPALS -I ID -V +52w -z <SERIAL_NUMBER> KEYFILE.pub
 
     -h - Indicates this is a Host Key to be signed (Client keys don't have this flag)
     -s - This is the private SSH CA key file
@@ -52,7 +51,7 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
     -z - Serial Number
     LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.gohilton.com,
 
-  The result of the is command with store the output in a file known as KEYFILE-cert.pub
+  The result of the is command with store the output in a file known as **KEYFILE-cert.pub**
 
   I will usually run the following command within the /etc/ssh directory for only the ssh_host_ed25519_key.pub file:
 
@@ -64,16 +63,16 @@ Signing the Host's Public Key will create a SSH Host Certificate.  Host SSH cert
 
     ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub
 
-#HOST CERTIFICATES STEP #2 - Configure sshd
+### **HOST CERTIFICATES STEP #2 - Configure sshd**
 
 Add the following within /etc/ssh/sshd_config
 
-  HostCertificate /etc/ssh/KEYFILE-cert.pub
+    HostCertificate /etc/ssh/KEYFILE-cert.pub
 
-  KEYFILE will be: ssh_host_ed25519_key, ssh_host_rsa_key, ssh_host_ecdsa_key, ssh_host_dsa_key
+  **KEYFILE** will be: ssh_host_ed25519_key, ssh_host_rsa_key, ssh_host_ecdsa_key, ssh_host_dsa_key
   I believe you can repeat the HostCertificate line multiple times in the config files to specficy Multiple Host Certificates of different types (dsa,rsa,ecdsa,ed25519).  The HostCertificate should always have a corresponding HostKey entry within the /etc/ssh/sshd_config file
 
-#HOST CERTIFICATES STEP #3 - Tell Clients to trust the Trusted Server
+### **HOST CERTIFICATES STEP #3 - Tell Clients to trust the Trusted Server**
 
 Each client will have a /etc/.ssh/known_hosts file and global /etc/ssh/ssh_known_hosts. You'll want to remove lines such as the following if wanting to use SSH Client/Server Certificates rather than SSH KeyBased Authentication.  Remove lines corresponding to each Server that will be using a SSH Host Certificate:
 
@@ -148,4 +147,6 @@ The log should spit out something similar to the following:
 
 Accepted publickey for kevdog from 10.0.1.185 port 63746 ssh2: ED25519-CERT SHA256:qC/ckN+0cZ0h/rqtL59pfSXsgQ6JZfDCzl93tWVDKbg ID kevdog@kevdog-MBP-2022-SSH-Client-Certificate (serial 0) CA ED25519 SHA256:bSSV3CEqcBTff1GGQtxvcnrM+LOzDYB+79i1CRMJQx8
 
+## **References**
+Explanation may best be found here: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39
 

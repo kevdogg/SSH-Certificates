@@ -2,21 +2,32 @@
 
 ## **Create CA (Certificate Authority) Public and Private Key**
 
-Usually I place place the SSH CA authority private and public keys within /etc/ssl/ssl folder.
+ My SSH Certificate Authority is usually located on one device. It is responsible for signing SSH Client Public Keys and SSH Daemon's Host Keys. I usually copy the public keys of the each named computer and put it in its respective clients/hosts directory under the hostname of the device.  The public keys are signed by the SSH CA Authority's Private Key creating SSH Client/Server Certificates. 
+
+Usually I place the SSH CA authority private and public keys within /etc/ssl/ssh folder.
 
 My directory structure is as follows:
 ```bash
 /etc/ssl/ssh
 ├── CA
 ├── CA.pub
-├── clients <-Directory
-├── hosts   <-Directory
+├── clients
+│   ├── bitwarden@archBW.domain.com
+│   │   ├── id_ed25519-cert.pub
+│   │   └── id_ed25519.pub
+│   └── kevdog@archBW.domain.com
+│       ├── id_ed25519-cert.pub
+│       └── id_ed25519.pub
+├── hosts
+│   └── arch-TM.domain.com
+│       ├── ssh_host_ed25519_key-cert.pub
+│       └── ssh_host_ed25519_key.pub
 ```
 
-This directory contains the SSH Certificate Authority's  CA public and private keys to be used for SSH Certificates.
+This directory contains the SSH Certificate Authority's CA private and public keys to be used for SSH Certificate Creation and Host/Client Configuration. .
 
 
-These keys represent SSH Certificate Authority - or ROOT CA for SSH keys within the *.domain.com domain.
+These keys represent SSH Certificate Authority keys for the ***domain.com*** domain.
 
 The CA private/public keypair can generated via the following command:
     ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA
@@ -161,7 +172,7 @@ TrustedUserCAKeys /etc/ssh/CA.pub
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;[3]: Example Validation of Server's /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
 ```bash
-#ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub
+# ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub
 ssh_host_ed25519_key-cert.pub:
         Type: ssh-ed25519-cert-v01@openssh.com host certificate
         Public key: ED25519-CERT SHA256:PQwXC3e3eoGri4+3KC/UPuGUXzDCDOoTnPHDMbl5D4c
@@ -182,7 +193,7 @@ ssh_host_ed25519_key-cert.pub:
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;[4]: Example Validation of Client's ${HOME}/.ssh/id_ed25519-cert.pub<br>
 ```bash
-#ssh-keygen -Lf ${HOME}/.ssh/id_ed25519-cert.pub
+# ssh-keygen -Lf ${HOME}/.ssh/id_ed25519-cert.pub
 id_ed25519-cert.pub:
         Type: ssh-ed25519-cert-v01@openssh.com user certificate
         Public key: ED25519-CERT SHA256:r0Z71zhfRnWZEpvnnUvMk4rC1LM9OAgrFkokNors6tI
@@ -203,7 +214,7 @@ id_ed25519-cert.pub:
 &nbsp;&nbsp;&nbsp;&nbsp;[5]: Example Client's ${HOME}/.ssh/known_hosts file<br>
 ```bash
 % cat ${HOME}/.ssh/known_hosts
-@cert-authority archbw,archtm,arch-tm,arch-TM,*.gohilton.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T gohilton.com-SSH-CA
+@cert-authority archbw,archtm,arch-tm,arch-TM,*.domain.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T domain.com-SSH-CA
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;[6]: Example Server's ${HOME}/.ssh/authorized_keys file<br>
 ```bash

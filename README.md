@@ -30,8 +30,9 @@ This directory contains the SSH Certificate Authority's CA private and public ke
 The CA and CA.pub keys represent SSH Certificate Authority private and public keys for the ***domain.com*** domain.
 
 The CA private/public keypair can generated via the following command:
-    ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA
-
+```bash
+ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA
+```
 
 ## **HOST CERTIFICATES**
 

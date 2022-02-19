@@ -2,9 +2,9 @@
 
 ## **Create CA (Certificate Authority) Public and Private Key**
 
- My SSH Certificate Authority is usually located on one device. It is responsible for signing SSH Client Public Keys and SSH Daemon's Host Keys. I usually copy the public keys of the each named computer and put it in its respective clients/hosts directory under the hostname of the device.  The public keys are signed by the SSH CA Authority's Private Key creating SSH Client/Server Certificates. 
+ My SSH Certificate Authority is usually located on one device. It is responsible for signing SSH Client Public Keys and SSH Daemons' Public Host Keys. I usually copy the public keys of the each named computers and put it in its respective clients/hosts directory under the hostname of the device.  The public keys are signed by the SSH CA Authority's Private Key creating SSH Client/Server Certificates. 
 
-Usually I place the SSH CA authority private and public keys within /etc/ssl/ssh folder.
+On the SSH CA authority host, private and public keys are located  within the /etc/ssl/ssh folder.
 
 My directory structure is as follows:
 ```bash
@@ -24,10 +24,10 @@ My directory structure is as follows:
 │       └── ssh_host_ed25519_key.pub
 ```
 
-This directory contains the SSH Certificate Authority's CA private and public keys to be used for SSH Certificate Creation and Host/Client Configuration. .
+This directory contains the SSH Certificate Authority's CA private and public keys to be used for SSH Certificate Creation and Host/Client Configuration.
 
 
-These keys represent SSH Certificate Authority keys for the ***domain.com*** domain.
+The CA and CA.pub keys represent SSH Certificate Authority private and public keys for the ***domain.com*** domain.
 
 The CA private/public keypair can generated via the following command:
     ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA

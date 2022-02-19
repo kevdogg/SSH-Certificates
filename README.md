@@ -56,7 +56,7 @@ Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access 
 
 &nbsp;&nbsp;&nbsp;&nbsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH Certificate Authority's CA key file<br>
-&nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<br>>
+&nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-V Validity Time - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-z - Serial Number<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.domain.com<br>
@@ -116,12 +116,12 @@ This is going to produce a private/public keypair:
 
 The user's public key is going to be signed via the following command:
 
-    ssh-keygen -s CA -I <ID> -n <USERNAME> -V <Validity Time> <KEYFILE>.pub
+    ssh-keygen -s CA -I <ID> -n <USERNAME> -V <Validity_Time> <KEYFILE>.pub
 
 &nbsp;&nbsp;&nbsp;&nbsp;-s - This is the SSH Certificate Authority's CA private key<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-I - Short human readable description of certificate - no spaces (Optional)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-n - Username by which you will connect -- usually the user has to have an account on the remote server<br>
-&nbsp;&nbsp;&nbsp;&nbsp;-V <Validity Time>- (Optional) time indicating when certificate will expire, ie +52w<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-V <Validity_Time>- (Optional) time indicating when certificate will expire, ie +52w<br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<KEYFILE\>.pub - User's public key usually id_ed25519.pub or id_rsa.pub<br>
 
  The SSH User Certificate needs to be stored on the client -- usually within ~/.ssh.  The name of this file will be ***KEYFILE-cert.pub*** where KEYFILE will be:  id_ed25519/id_rsa/id_dsa/id_ecdsa.

@@ -29,7 +29,7 @@ This directory contains the SSH Certificate Authority's CA private and public ke
 
 The CA and CA.pub keys represent SSH Certificate Authority private and public keys for the ***domain.com*** domain.
 
-The CA private/public keypair can generated via the following command:
+The SSH Certificate Authority's CA private/public keypair can generated via the following command:
 ```bash
 ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA
 ```
@@ -38,7 +38,7 @@ ssh-keygen -a 100 -t ed25519 -f CA -C domain.com-SSH-CA
 
 ### **HOST CERTIFICATES BACKGROUND**
 
-During the process of installing the ssh daemon. ssh host keys are automatically generated and are created within the /etc/ssh diretory.
+During the process of installing the ssh daemon, ssh host keys are automatically generated and are created within the /etc/ssh diretory.
 Typically the keys that are generated are the following:
 
   - ssh_host_dsa_key / ssh_host_dsa_key.pub
@@ -58,18 +58,18 @@ Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access 
 &nbsp;&nbsp;&nbsp;&nbsp;-h - Indicates this is a Host Key to be signed (Client keys don't have this flag)<BR />
 &nbsp;&nbsp;&nbsp;&nbsp;-s - This is the private SSH Certificate Authority's CA key file<BR />
 &nbsp;&nbsp;&nbsp;&nbsp;-I  ID - short, human-readable description of the certificate (Optional)<BR />
-&nbsp;&nbsp;&nbsp;&nbsp;-V <Validity Time> - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<BR />
+&nbsp;&nbsp;&nbsp;&nbsp;-V <Validity Time\> - This (optional) flag gives an expiration date of the Host's SSH Certificate.  +52w is used as an example<BR />
 &nbsp;&nbsp;&nbsp;&nbsp;-z - Serial Number<BR />
 &nbsp;&nbsp;&nbsp;&nbsp;-n  LIST-OF_PRINCIPALS - comma-separated list of the domain names by which the Server is accessed. For example: archbw,archbw.domain.com,<BR />
 </div>  
-<BR /><br>
-  Running the above command will result in a file known as **KEYFILE-cert.pub**.  This command needs to be run for each type of server host key that needs to be signed (ed25519,ecdsa,rsa,dsa).
+<br>
+  Running the above command will result in a file known as __KEYFILE-cert.pub__.  This command needs to be run for each type of server host key that needs to be signed (ed25519,ecdsa,rsa,dsa).
 
   I will usually run the following command within the /etc/ssh directory for only the ssh_host_ed25519_key.pub file:
 
     ssh-keygen -h -s CA -n <LIST-OF-PRINCIPALS> -I <Description with No Spaces> -z <Serial Number> ssh_host_ed25519_key.pub
 
-  The above command will produced a file known as /etc/ssh/ssh_host_ed25519_key-cert.pub
+  The above command will produced a file known as /etc/ssh/ssh_host_ed25519_key-cerxt.pub
 
   To Validate the Host/Server Certificate use:
 

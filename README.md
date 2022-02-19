@@ -86,7 +86,7 @@ Instead of Host Keys, include the CA.pub in the known_hosts on each Client. So f
 
 &emsp;- LIST-OF-SERVERS - comma-separate list of Servers that signed their host key. Wildcards can be permitted.
 
-&emsp;- CA.pub - This is the CA.pub key appended as shown above.  
+&emsp;- CA.pub - This is the SSH Certificate Authority's CA.pub key.
 
     @cert-authority archbw,*.gohilton.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHQYA5QkxrnJUO4M2t3TjzrRUVIWAlFQ/7ADlPq4s7T gohilton.com-SSH-CA
 
@@ -101,8 +101,8 @@ Each user is going to generate their individual ssh keypairs. This is going to b
 
 This is going to produce a private/public keypair:
   
-&emsp;~/.ssh/id_ed25519  
-&emsp;~/.ssh/ed_ed25519.pub  
+&emsp;<pre>~/.ssh/id_ed25519</pre><br/>
+&emsp;<pre>~/.ssh/ed_ed25519.pub</pre><br/>
 
 ### **USER CERTIFICATES STEP #1 - Sign the client's public key##
 

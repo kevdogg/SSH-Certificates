@@ -1,5 +1,18 @@
 # **How to Create SSH Host(Server) and Client Certificates**
 
+## **Create CA (Certificate Authority) Public and Private Key**
+
+Usually I place place the SSH CA authority private and public keys within /etc/ssl/ssl folder.
+
+My directory structure is as follows:
+```bash
+/etc/ssl/ssh
+├── CA
+├── CA.pub
+├── clients
+├── hosts
+```
+
 This directory contains the master or root CA public and private keys to be used for SSH Certificates.
 
 Explanation may best be found here: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39

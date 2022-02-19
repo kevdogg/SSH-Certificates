@@ -153,6 +153,7 @@ The log should spit out something similar to the following:
 ## **References**
 &emsp;[1]: https://berndbausch.medium.com/ssh-certificates-a45bdcdfac39<br>
 &emsp;[2]: /etc/ssh/sshd-config additions:  
-    HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub
-    TrustedUserCAKeys /etc/ssh/CA.pub
+<br>
+&emsp;&emsp;HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
+&emsp;&emsp;TrustedUserCAKeys /etc/ssh/CA.pub
 

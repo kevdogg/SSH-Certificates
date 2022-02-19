@@ -154,4 +154,44 @@ The log should spit out something similar to the following:
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HostCertificate /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrustedUserCAKeys /etc/ssh/CA.pub
-
+&nbsp;&nbsp;&nbsp;&nbsp;[3]: Example Validation of /etc/ssh/ssh_host_ed25519_key-cert.pub<br>
+```bash
+#ssh-keygen -Lf /etc/ssh/ssh_host_ed25519_key-cert.pub
+ssh_host_ed25519_key-cert.pub:
+        Type: ssh-ed25519-cert-v01@openssh.com host certificate
+        Public key: ED25519-CERT SHA256:PQwXC3e3eoGri4+3KC/UPuGUXzDCDOoTnPHDMbl5D4c
+        Signing CA: ED25519 SHA256:bSSV3CEqcBTff1GGQtxvcnrM+LOzDYB+79i1CRMJQx8 (using ssh-ed25519)
+        Key ID: "SSHD-SERVER@arch-TM.domain.com-signed-by-domain.com-SSH-CA"
+        Serial: 0
+        Valid: forever
+        Principals:
+                arch-TM
+                arch-TM.domain.com
+                archtm
+                archtm.domain.com
+                10.0.1.107
+                arch-tm
+                arch-tm.domain.com
+        Critical Options: (none)
+        Extensions: (none)
+```
+&nbsp;&nbsp;&nbsp;&nbsp;[4]: Example Validation of ${HOME}/.ssh/id_ed25519_key-cert.pub<br>
+```bash
+#ssh-keygen -Lf ${HOME}/.ssh/id_ed25519-cert.pub
+id_ed25519-cert.pub:
+        Type: ssh-ed25519-cert-v01@openssh.com user certificate
+        Public key: ED25519-CERT SHA256:r0Z71zhfRnWZEpvnnUvMk4rC1LM9OAgrFkokNors6tI
+        Signing CA: ED25519 SHA256:bSSV3CEqcBTff1GGQtxvcnrM+LOzDYB+79i1CRMJQx8 (using ssh-ed25519)
+        Key ID: "bitwarden@archBW.domain.com-SSH-Client-Certificate-for-domain.com-SSH-CA"
+        Serial: 0
+        Valid: forever
+        Principals:
+                bitwarden
+        Critical Options: (none)
+        Extensions:
+                permit-X11-forwarding
+                permit-agent-forwarding
+                permit-port-forwarding
+                permit-pty
+                permit-user-rc
+```

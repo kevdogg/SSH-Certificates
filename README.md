@@ -67,7 +67,7 @@ Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access 
 
     ssh-keygen -h -s CA -n <LIST-OF-PRINCIPALS> -I <Description with No Spaces> -z <Serial Number> ssh_host_ed25519_key.pub
 
-  The above command will produced a file known as /etc/ssh/ssh_host_ed25519_key-cerxt.pub
+  The above command will produced a file known as /etc/ssh/ssh_host_ed25519_key-cert.pub
 
   To Validate the Host/Server Certificate use:
 

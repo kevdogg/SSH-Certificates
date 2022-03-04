@@ -132,7 +132,7 @@ The user's public key is going to be signed via the following command:
 
 The SSH User Certificate can be validated via:
 
-    ssh-keygen -LF <Certifiate File>
+    ssh-keygen -Lf <Certifiate File>
 
 &nbsp;&nbsp;&nbsp;&nbsp;- \<Certificate File\> - Will usually be id_ed25519-cert.pub
 
@@ -148,7 +148,7 @@ The SSH User Certificate can be validated via:
 
 ### **USER CERTIFICATES #4 - Modify authorized_keys file to remove the client's public key (OPTIONAL)**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Remove any entry within the ~/.ssh/authorized_keys file on the Server.  This wwill force the server to accept client SSH certificates that are signed via the SSH CA. If you want to keep continuing to use traditional ssh client public/private keypair authentication, you don't necessarily need to remove reference to the client's public key. 
+&nbsp;&nbsp;&nbsp;&nbsp;Remove any entry within the ~/.ssh/authorized_keys file on the Server.  This will force the server to accept client SSH certificates that are signed via the SSH CA. If you want to keep continuing to use traditional ssh client public/private keypair authentication, you don't necessarily need to remove reference to the client's public key. 
 
 When testing the connection via the client to server, you can view the server logs via:
 

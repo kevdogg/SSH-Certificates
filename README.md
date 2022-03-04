@@ -77,7 +77,7 @@ Depending on what type of keys (dsa,rsa,ecdsa,ed25519) are being used to access 
 
 &nbsp;&nbsp;&nbsp;&nbsp;Add the following within ***/etc/ssh/sshd_config***
 
-    HostCertificate **/etc/ssh/KEYFILE-cert.pub
+    HostCertificate /etc/ssh/KEYFILE-cert.pub
 
   **KEYFILE** will be: ssh_host_ed25519_key, ssh_host_rsa_key, ssh_host_ecdsa_key, ssh_host_dsa_key.<br><br>
   I believe you can repeat the HostCertificate line multiple times in the config files to specficy Multiple Host Certificates of different types (dsa,rsa,ecdsa,ed25519).  The HostCertificate(s) should always have a corresponding HostKey entry within the /etc/ssh/sshd_config file.

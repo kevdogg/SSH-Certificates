@@ -119,7 +119,7 @@ The user's public key is going to be signed via the following command:
     ssh-keygen -s CA -I <ID> -n <USERNAME> -V <Validity_Time> <KEYFILE>.pub
 
 &nbsp;&nbsp;&nbsp;&nbsp;-s - This is the SSH Certificate Authority's CA private key<br>
-&nbsp;&nbsp;&nbsp;&nbsp;-I - Short human readable description of certificate - no spaces (Optional)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-I - Short human readable description of certificate - no spaces (No Longer Optional)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-n - Username by which you will connect -- usually the user has to have an account on the remote server<br>
 &nbsp;&nbsp;&nbsp;&nbsp;-V <Validity_Time>- (Optional) time indicating when certificate will expire, ie +52w<br>
 &nbsp;&nbsp;&nbsp;&nbsp;\<KEYFILE\>.pub - User's public key usually id_ed25519.pub or id_rsa.pub<br>
